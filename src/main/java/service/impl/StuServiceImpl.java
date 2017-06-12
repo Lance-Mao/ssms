@@ -21,7 +21,15 @@ public class StuServiceImpl implements StuService {
         return stuDao.login(stu);
     }
 
-    public Map<String, Object> infoMap(int number) {
+    public Map<String, Object> infoMap(String number) {
         return stuDao.infoMap(number);
+    }
+
+    public void save(Stu stu) {
+        stuDao.save(stu);
+    }
+
+    public List<Map<String, Object>> allStuInfo() {
+        return stuDao.allStuInfo();
     }
 }

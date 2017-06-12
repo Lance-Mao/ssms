@@ -33,7 +33,7 @@ public class TeaDaoImpl implements TeaDao {
             Connection conn = DBConn.getDataSource().getConnection();
             String sql = "select * from tea_info WHERE tea_number = ? and password = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, tea.getTea_number());
+            pstm.setString(1, tea.getTea_number());
             pstm.setString(2,tea.getPassword());
             ResultSet rs = pstm.executeQuery();
             System.out.println(123);
@@ -48,7 +48,7 @@ public class TeaDaoImpl implements TeaDao {
         return false;
     }
 
-    public Map<String, Object> infoMap(int number) {
+    public Map<String, Object> infoMap(String number) {
         String sql = "select * from tea_info where tea_number = ?";
         try {
             Map<String, Object> mapInfo = DBConn.getQueryRunner().query(sql, new MapHandler(), number);
@@ -57,5 +57,14 @@ public class TeaDaoImpl implements TeaDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void save(Tea tea) {
+        String sql = "insert into tea_info(tea_number,tea_name,tea_sex,tea_age,password,type,phone,theClass,theCourse,entrance_date) values(?,?,?,?,?,?,?,?,?,?)";
+        try {
+            DBConn.getQueryRunner().update(sql, tea.getTea_number(), tea.getTea_name(), tea.getTea_sex(), tea.getTea_age(), tea.getPassword(), tea.getType(), tea.getPhone(), tea.getTheClass(), tea.getTheCourse(),tea.getDate());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

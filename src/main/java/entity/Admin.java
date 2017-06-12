@@ -6,28 +6,31 @@ package entity;
 public class Admin {
 
     private int id;
-    private int number;
+    private String number;
     private String name;
     private String password;
     private String type;
+
+    public Admin() {
+
+    }
+
+    public Admin(String number, String name, String password, String type) {
+        this.number = number;
+        this.name = name;
+        this.password = password;
+        this.type = type;
+    }
 
     @Override
     public String toString() {
         return "Admin{" +
                 "id=" + id +
-                ", number=" + number +
+                ", number='" + number + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
                 '}';
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public int getId() {
@@ -36,6 +39,14 @@ public class Admin {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getName() {

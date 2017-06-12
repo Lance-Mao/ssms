@@ -23,7 +23,12 @@ public class TeaServiceImpl implements TeaService {
         return teaDao.login(tea);
     }
 
-    public Map<String, Object> infoMap(int number) {
+
+    public Map<String, Object> infoMap(String number) {
         return teaDao.infoMap(number);
+    }
+
+    public void save(Tea tea) {
+        teaDao.save(tea);
     }
 }

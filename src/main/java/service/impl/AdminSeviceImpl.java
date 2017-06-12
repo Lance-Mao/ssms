@@ -16,7 +16,7 @@ public class AdminSeviceImpl implements AdminSevice {
         return adminDao.login(admin);
     }
 
-    public Map<String, Object> infoMap(int number) {
+    public Map<String, Object> infoMap(String number) {
         return adminDao.infoMap(number);
     }
 }

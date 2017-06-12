@@ -33,7 +33,7 @@ public class StuDaoImpl implements StuDao {
             Connection conn = DBConn.getDataSource().getConnection();
             String sql = "select * from stu_info WHERE stu_number = ? and password = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, stu.getStu_number());
+            pstm.setString(1,stu.getStu_number());
             pstm.setString(2,stu.getPassword());
             ResultSet rs = pstm.executeQuery();
             System.out.println("学生成绩判断进入！");
@@ -47,7 +47,7 @@ public class StuDaoImpl implements StuDao {
         return false;
     }
 
-    public Map<String, Object> infoMap(int number) {
+    public Map<String, Object> infoMap(String number) {
         String sql = "select * from stu_info where stu_number = ?";
         try {
             Map<String, Object> mapInfo = DBConn.getQueryRunner().query(sql, new MapHandler(), number);
@@ -60,9 +60,30 @@ public class StuDaoImpl implements StuDao {
         return null;
     }
 
+    public void save(Stu stu) {
+        String sql = "insert into stu_info(stu_number,stu_name,stu_age,stu_sex,stu_class,stu_grape,stu_score,password,type,phone,entrance_date) values(?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            DBConn.getQueryRunner().update(sql, stu.getStu_number(), stu.getStu_name(), stu.getStu_age(), stu.getStu_sex(), stu.getStu_class(), stu.getStu_grape(), stu.getStu_score(), stu.getPassword(), stu.getPhone(), stu.getEntrance_date(), stu.getType());
+        } catch (SQLException e) {
+            System.out.println("学生信息存储失败！");
+            e.printStackTrace();
+        }
+    }
+
+    public List<Map<String, Object>> allStuInfo() {
+        String sql = "select * from stu_info";
+        try {
+            return DBConn.getQueryRunner().query(sql, new MapListHandler());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Test
     public void test(){
         StuDaoImpl stuDao = new StuDaoImpl();
-        stuDao.infoMap(111111);
+        stuDao.infoMap("111111");
     }
 }

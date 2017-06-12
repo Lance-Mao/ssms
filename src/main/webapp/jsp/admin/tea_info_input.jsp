@@ -77,16 +77,10 @@
             <a href="javascript:; " style="background-color: #aaaaaa;">信息管理</a>
             <dl class="layui-nav-child" style="background-color: #aaaaaa;">
                 <dd><a href="/jsp/admin/index.jsp" style="color: #0C0C0C">首页</a></dd>
-                <dd><a href="/jsp/admin/stu_info_input.jsp" style="color: #0C0C0C">学生信息录入</a></dd>
-                <dd><a href="/jsp/admin/stu_info_modify.jsp" style="color: #0C0C0C">学生信息修改</a></dd>
-                <dd><a href="/jsp/admin/tea_info_input.jsp" style="color: #0C0C0C">教师信息录入</a></dd>
-                <dd><a href="/jsp/admin/tea_info_modify.jsp" style="color: #0C0C0C">教师信息修改</a></dd>
-                <dd><a href="/jsp/admin/grade_info_input.jsp" style="color: #0C0C0C">年级信息录入</a></dd>
-                <dd><a href="/jsp/admin/grade_info_modify.jsp" style="color: #0C0C0C">年级信息修改</a></dd>
-                <dd><a href="/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入</a></dd>
-                <dd><a href="/jsp/admin/course_info_modify.jsp" style="color: #0C0C0C">课程信息修改</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">考试成绩列表</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">跳转项</a></dd>
+                <dd><a href="/jsp/admin/stu_info_input.jsp" style="color: #0C0C0C">学生信息录入及修改</a></dd>
+                <dd><a href="/jsp/admin/tea_info_input.jsp" style="color: #0C0C0C">教师信息录入及修改</a></dd>
+                <dd><a href="/jsp/admin/grade_info_input.jsp" style="color: #0C0C0C">年级信息录入及修改</a></dd>
+                <dd><a href="/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入及修改</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item">
@@ -111,13 +105,13 @@
             <legend>教师信息录入</legend>
         </fieldset>
 
-        <form class="layui-form" action="">
+        <form action="${pageContext.request.contextPath}/AdminServlet?method=teaInfo" class="layui-form" method="post">
 
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">教师工号</label>
                     <div class="layui-input-inline">
-                        <input name="number" lay-verify="number" autocomplete="off" placeholder="请输入学号"
+                        <input name="number" lay-verify="number" autocomplete="off" placeholder="请输入工号"
                                class="layui-input"
                                type="text">
                     </div>
@@ -126,14 +120,21 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">教师姓名</label>
                     <div class="layui-input-inline">
-                        <input name="stu_name" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text">
+                        <input name="tea_name" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">初始密码</label>
+                    <div class="layui-input-inline">
+                        <input name="password" autocomplete="off" placeholder="请输入密码" class="layui-input" type="text">
                     </div>
                 </div>
 
                 <div class="layui-inline">
                     <label class="layui-form-label">所带课程</label>
                     <div class="layui-input-inline">
-                        <input name="stu_grade_info" autocomplete="off" placeholder="请输入年级信息" class="layui-input"
+                        <input name="tea_grade_info" autocomplete="off" placeholder="请输入年级信息" class="layui-input"
                                type="text">
                     </div>
                 </div>
@@ -141,7 +142,15 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">所带班级</label>
                     <div class="layui-input-inline">
-                        <input name="stu_class_info" autocomplete="off" placeholder="请输入班级信息" class="layui-input"
+                        <input name="tea_class_info" autocomplete="off" placeholder="请输入班级信息" class="layui-input"
+                               type="text">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-inline">
+                        <input name="age" autocomplete="off" placeholder="请输入年龄" class="layui-input"
                                type="text">
                     </div>
                 </div>
@@ -163,39 +172,9 @@
                 </div>
             </div>
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">住址信息</label>
-                <div class="layui-input-inline">
-                    <select name="quiz1">
-                        <option value="">请选择省</option>
-                        <option value="浙江" selected="">浙江省</option>
-                        <option value="你的工号">江西省</option>
-                        <option value="你最喜欢的老师">福建省</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="quiz2">
-                        <option value="">请选择市</option>
-                        <option value="杭州">杭州</option>
-                        <option value="宁波" disabled="">宁波</option>
-                        <option value="温州">温州</option>
-                        <option value="温州">台州</option>
-                        <option value="温州">绍兴</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="quiz3">
-                        <option value="">请选择县/区</option>
-                        <option value="西湖区">西湖区</option>
-                        <option value="余杭区">余杭区</option>
-                        <option value="拱墅区">临安市</option>
-                    </select>
-                </div>
-            </div>
-
 
             <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
+                <label class="layui-form-label">性别</label>
                 <div class="layui-input-block">
                     <input name="sex" value="男" title="男" checked="" type="radio">
                     <input name="sex" value="女" title="女" type="radio">
@@ -211,13 +190,28 @@
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button class="layui-btn" lay-submit="">立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $("#tea_info_input").click(function () {
+            var number = $("input[name='number']").val();
+            var tea_name = $("input[name='stu_name']").val();
+            var tea_sex = $("input[name='sex']").val();
+            var tea_class = $("input[name='tea_class_info']").val();
+            var stu_grape = $("input[name='stu_grade_info']").val();
+            var password = $("input[name='tea_password']").val();
+            var phone = $("input[name='phone']").val();
+            var entrance_date = $("input[name='date']").val()
+        })
+    })
+</script>
 
 <script>
     layui.use(['form', 'layedit', 'laydate'], function () {

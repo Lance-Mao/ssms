@@ -1,0 +1,3 @@
+INSERT INTO sams.course (c_name, c_score, t_name, t_number, date, s_name, s_number, credit) VALUES ('数学', 100, '李四', 222, '2017-06-10', '张三', 111111, 2);
+INSERT INTO sams.course (c_name, c_score, t_name, t_number, date, s_name, s_number, credit) VALUES ('英语', 100, '李四', 222, '2017-06-10', '张三', 111111, 2);
+INSERT INTO sams.course (c_name, c_score, t_name, t_number, date, s_name, s_number, credit) VALUES ('政治', 50, '李四', 222, '2017-06-10', '张三', 111111, 2);

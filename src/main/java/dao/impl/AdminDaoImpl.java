@@ -20,7 +20,7 @@ public class AdminDaoImpl implements AdminDao {
             Connection conn = DBConn.getDataSource().getConnection();
             String sql = "select * from admin_info WHERE number = ? and password = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, admin.getNumber());
+            pstm.setString(1, admin.getNumber());
             pstm.setString(2,admin.getPassword());
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
@@ -32,7 +32,7 @@ public class AdminDaoImpl implements AdminDao {
         return false;
     }
 
-    public Map<String, Object> infoMap(int number) {
+    public Map<String, Object> infoMap(String number) {
         String sql = "select * from admin_info where number = ?";
         try {
             Map<String, Object> mapInfo = DBConn.getQueryRunner().query(sql, new MapHandler(), number);

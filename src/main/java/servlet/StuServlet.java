@@ -118,7 +118,7 @@ public class StuServlet extends HttpServlet {
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int number = Integer.parseInt(req.getParameter("number"));
+        String number = req.getParameter("number");
         String s_password = req.getParameter("password");
         Stu stu = new Stu();
         stu.setStu_number(number);

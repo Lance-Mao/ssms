@@ -97,7 +97,7 @@ public class TeaServlet extends HttpServlet {
         doPost(req, resp);
     }
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int number = Integer.parseInt(req.getParameter("username"));
+        String number = req.getParameter("username");
         String s_password = req.getParameter("password");
         tea.setTea_number(number);
         tea.setPassword(s_password);

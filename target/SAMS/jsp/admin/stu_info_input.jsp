@@ -86,8 +86,7 @@
 
                 <dd><a href="/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入</a></dd>
                 <dd><a href="/jsp/admin/course_info_modify.jsp" style="color: #0C0C0C">课程信息修改</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">考试成绩列表</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">跳转项</a></dd>
+
             </dl>
         </li>
         <li class="layui-nav-item">
@@ -112,7 +111,7 @@
             <legend>学生信息录入</legend>
         </fieldset>
 
-        <form class="layui-form" action="">
+        <form action="${pageContext.request.contextPath}/AdminServlet?method=stuInfo" class="layui-form" method="post">
 
             <div class="layui-form-item">
                 <div class="layui-inline">
@@ -130,6 +129,22 @@
                         <input name="stu_name" autocomplete="off" placeholder="请输入姓名" class="layui-input" type="text">
                     </div>
                 </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">初始密码</label>
+                    <div class="layui-input-inline">
+                        <input name="stu_password" autocomplete="off" placeholder="请输入密码" class="layui-input"
+                               type="text">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-inline">
+                        <input name="stu_age" autocomplete="off" placeholder="请输入年龄" class="layui-input" type="text">
+                    </div>
+                </div>
+
 
                 <div class="layui-inline">
                     <label class="layui-form-label">年级信息</label>
@@ -165,29 +180,125 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
+                <label class="layui-form-label">性别</label>
                 <div class="layui-input-block">
                     <input name="sex" value="男" title="男" checked="" type="radio">
                     <input name="sex" value="女" title="女" type="radio">
                     <input name="sex" value="禁" title="禁用" disabled="" type="radio">
                 </div>
             </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">备注信息</label>
-                <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-                </div>
-            </div>
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button class="layui-btn" lay-submit="" >立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<div style="float: left">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>学生信息</legend>
+    </fieldset>
+
+    <div class="layui-form">
+        <table class="layui-table">
+            <colgroup>
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+            </colgroup>
+            <thead>
+            <tr>
+                <th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+                <th>学生学号</th>
+                <th>学生姓名</th>
+                <th>初始密码</th>
+                <th>年龄</th>
+                <th>年级信息</th>
+                <th>班级信息</th>
+                <th>手机号</th>
+                <th>入校日期</th>
+                <th>性别</th>
+                <th>修改信息</th>
+                <th>删除信息</th>
+
+            </tr>
+            </thead>
+            <tbody id="list_stuInfo">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/AdminServlet?method=show_tea_info",
+            function (data, status) {
+                $("#list_stuInfo").html();
+                for (var i in data) {
+                    $("#list_stuInfo").append(
+                        "<tr>" +
+                        "                <td><input name='' lay-skin='primary' type='checkbox'></td>" +
+                        "                <td>" + data[i]['stu_number'] + "</td>" +
+                        "                <td>" + data[i]['stu_name'] + "</td>" +
+                        "                <td>" + data[i]['password'] + "</td>" +
+                        "                <td>" + data[i]['stu_age'] + "</td>" +
+                        "                <td>" + data[i]['stu_grape'] + "</td>" +
+                        "                <td>" + data[i]['stu_class'] + "</td>" +
+                        "                <td>" + data[i]['phone'] + "</td>" +
+                        "                <td>" + data[i]['entrance_date'] + "</td>" +
+                        "                <td>" + data[i]['stu_sex'] + "</td>" +
+                        "                <td>                    <button value=" + data[i]['stu_number'] + " onclick='alertInfo("+data[i]['stu_number']+")' class='layui-btn'><i  class='layui-icon'  id='alertInfo'></i></button></td>" +
+                        "                <td>                    <button value=" + data[i]['stu_number'] + " onclick='delInfo("+data[i]['stu_number']+")' class='layui-btn'><i class='layui-icon' id='delInfo'></i></button></td>" +
+                        "            </tr>"
+                    )
+                }
+            },
+            "json"
+        )
+
+
+    })
+
+    function alertInfo(stu_number) {
+        alert(stu_number)
+        $.post("${pageContext.request.contextPath}/AdminServlet?method=alertInfo",
+            {
+                stu_number:stu_number
+            },
+            function (data, status) {
+            alert(data)
+            }
+        )
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        function alertInfo(stu_number) {
+
+            alert(stu_number)
+            $.post("${pageContext.request.contextPath}/AdminServlet?method=alertInfo",
+                function (data, status) {
+
+                }
+            )
+        }
+    })
+</script>
 
 <script>
     layui.use(['form', 'layedit', 'laydate'], function () {
@@ -228,7 +339,6 @@
             return false;
         });
 
-
     });
 </script>
 
@@ -243,5 +353,40 @@
         });
     });
 </script>
+
+<%--<script>
+    $(function () {
+        $("#stu_info_commit").click(function () {
+
+            var stu_number = $("input[name='number']").val();
+            var stu_name = $("input[name='stu_name']").val();
+            var stu_age = $("input[name='stu_age']").val();
+            var stu_sex = $("input[name='sex']").val();
+            var stu_class = $("input[name='stu_class_info']").val();
+            var stu_grape = $("input[name='stu_grade_info']").val();
+            var password = $("input[name='stu_password']").val();
+            var phone = $("input[name='phone']").val();
+            var entrance_date = $("input[name='date']").val()
+
+            alert(phone)
+            $.post("${pageContext.request.contextPath}/TeaServlet?method=stuInfo",
+                {
+                    stu_number: stu_number,
+                    stu_name: stu_name,
+                    stu_age: stu_age,
+                    stu_sex: stu_sex,
+                    stu_class: stu_class,
+                    stu_grape: stu_grape,
+                    password: password,
+                    phone: phone,
+                    entrance_date: entrance_date
+                },
+                function (data, status) {
+
+                }
+            );
+        })
+    })
+</script>--%>
 </body>
 </html>

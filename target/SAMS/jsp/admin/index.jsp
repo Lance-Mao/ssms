@@ -85,8 +85,7 @@
                 <dd><a href="/jsp/admin/grade_info_modify.jsp" style="color: #0C0C0C">年级信息修改</a></dd>
                 <dd><a href="/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入</a></dd>
                 <dd><a href="/jsp/admin/course_info_modify.jsp" style="color: #0C0C0C">课程信息修改</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">考试成绩列表</a></dd>
-                <dd><a href="/jsp/admin/" style="color: #0C0C0C">跳转项</a></dd>
+
             </dl>
         </li>
         <li class="layui-nav-item">

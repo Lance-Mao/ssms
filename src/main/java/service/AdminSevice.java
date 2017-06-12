@@ -11,5 +11,5 @@ public interface AdminSevice {
     //判断管理员登录
     boolean login(Admin admin);
     //根据管理员工号查询该管理员信息
-    Map<String, Object> infoMap(int number);
+    Map<String, Object> infoMap(String number);
 }

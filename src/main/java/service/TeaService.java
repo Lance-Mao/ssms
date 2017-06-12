@@ -14,5 +14,7 @@ public interface TeaService {
     //登录时，匹配用户名与吗，密码是否一致
     boolean login(Tea tea);
     //根据老师工号查询该老师信息
-    Map<String, Object> infoMap(int number);
+    Map<String, Object> infoMap(String number);
+    //录入老师相关信息
+    void save(Tea tea);
 }
