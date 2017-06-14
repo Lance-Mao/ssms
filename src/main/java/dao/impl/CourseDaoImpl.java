@@ -15,10 +15,11 @@ import java.util.Map;
 public class CourseDaoImpl implements CourseDao {
     public void saveCourse(Course course) {
         System.out.println(333333);
-        String sql = "insert into course(c_name,c_score,t_name,t_number,date,s_name,s_number,credit) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into course(c_name,c_score,t_name,t_number,date,s_name,s_number) values(?,?,?,?,?,?,?)";
         try {
             System.out.println(course);
-            DBConn.getQueryRunner().update(sql, course.getC_name(), course.getC_score(), course.getT_name(), course.getT_number(), course.getDate(), course.getS_name(), course.getS_number(),course.getCredit());
+            DBConn.getQueryRunner().update(sql, course.getC_name(), course.getC_score(), course.getT_name(), course.getT_number(), course.getDate(), course.getS_name(), course.getS_number());
+            System.out.println(3333333);
         } catch (SQLException e) {
             e.printStackTrace();
         }

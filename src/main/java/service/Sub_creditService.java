@@ -14,5 +14,5 @@ public interface Sub_creditService {
     void save(Sub_credit sub_credit);
 
     //根据学生学号获取学生课程信息
-    List<Map<String, Object>> listInfo(int number);
+    List<Map<String, Object>> listInfo(String number);
 }

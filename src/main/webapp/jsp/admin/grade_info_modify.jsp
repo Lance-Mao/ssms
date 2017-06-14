@@ -10,16 +10,16 @@
 <html>
 <head>
     <title>TronClass</title>
-    <script type="text/javascript" src="/jquery-3.2.1/jquery-3.2.1.js"></script>
-    <script src="/layui/layui.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
 <%
     String name = (String) request.getSession().getAttribute("adminName");
     if (name == null) {
-        response.sendRedirect("/jsp/login/login.jsp");
+        response.sendRedirect(request.getContextPath()+"/jsp/login/login.jsp");
     }
 %>
 
@@ -37,7 +37,7 @@
 
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="">登出</a></li>
+        <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/jsp/login/login.jsp">登出</a></li>
 
         <span style="width: 500px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <li class="layui-nav-item layui-this">
@@ -64,7 +64,7 @@
 <div style="float: left; margin-right: 20px">
     <div style="width: 200px;height: 180px;border: 1px solid #eeeeee;">
 
-        <div style="width: 200px;height: 110px" align="center"><img src="/img/user.jpg"></div>
+        <div style="width: 200px;height: 110px" align="center"><img src="${pageContext.request.contextPath}/img/user.jpg"></div>
         <div align="center"><%=request.getSession().getAttribute("adminName")%>
         </div>
         <div align="center"><%=request.getSession().getAttribute("adminType")%>
@@ -76,16 +76,11 @@
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:; " style="background-color: #aaaaaa;">信息管理</a>
             <dl class="layui-nav-child" style="background-color: #aaaaaa;">
-                <dd><a href="/jsp/admin/index.jsp" style="color: #0C0C0C">首页</a></dd>
-                <dd><a href="/jsp/admin/stu_info_input.jsp" style="color: #0C0C0C">学生信息录入</a></dd>
-                <dd><a href="/jsp/admin/stu_info_modify.jsp" style="color: #0C0C0C">学生信息修改</a></dd>
-                <dd><a href="/jsp/admin/tea_info_input.jsp" style="color: #0C0C0C">教师信息录入</a></dd>
-                <dd><a href="/jsp/admin/tea_info_modify.jsp" style="color: #0C0C0C">教师信息修改</a></dd>
-                <dd><a href="/jsp/admin/grade_info_input.jsp" style="color: #0C0C0C">年级信息录入</a></dd>
-                <dd><a href="/jsp/admin/grade_info_modify.jsp" style="color: #0C0C0C">年级信息修改</a></dd>
-
-                <dd><a href="/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入</a></dd>
-                <dd><a href="/jsp/admin/course_info_modify.jsp" style="color: #0C0C0C">课程信息修改</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/admin/index.jsp" style="color: #0C0C0C">首页</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/admin/stu_info_input.jsp" style="color: #0C0C0C">学生信息录入</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/admin/tea_info_input.jsp" style="color: #0C0C0C">教师信息录入</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/admin/grade_info_input.jsp" style="color: #0C0C0C">年级信息录入</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/admin/course_info_input.jsp" style="color: #0C0C0C">课程信息录入</a></dd>
 
             </dl>
         </li>

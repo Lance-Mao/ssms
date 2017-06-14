@@ -9,14 +9,15 @@
 <html>
 <head>
     <title>TronClass</title>
-    <script src="/layui/layui.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <%
     String name = (String) request.getSession().getAttribute("teaName");
     if (name == null) {
-        response.sendRedirect("/jsp/login/login.jsp");
+        response.sendRedirect(request.getContextPath()+"/jsp/login/login.jsp");
     }
 %>
 <body>
@@ -26,22 +27,22 @@
         <li class="layui-nav-item layui-this">
             <a href="javascript:;" ><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;相关设置</a>
             <dl class="layui-nav-child">
-                <dd><a href="/jsp/tea/setting.jsp">个人设置</a></dd>
-                <dd><a href="/jsp/tea/setPassword.jsp">修改密码</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/setting.jsp">个人设置</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/setPassword.jsp">修改密码</a></dd>
 
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="">登出</a></li>
+        <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/jsp/login/login.jsp">登出</a></li>
 
         <span style="width: 500px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <li class="layui-nav-item"><a href=""><i class="fa fa-user fa-4" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<%=request.getSession().getAttribute("teaName")%></a></li>
 
         <li class="layui-nav-item">
-            <a href="/jsp/tea/index.jsp"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的主页</a>
+            <a href="${pageContext.request.contextPath}/jsp/tea/index.jsp"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的主页</a>
             <dl class="layui-nav-child">
-                <dd><a href="/jsp/tea/allCourses.jsp"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;查看成绩</a></dd>
-                <dd><a href="/jsp/tea/user.jsp"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;个人中心</a></dd>
-                <dd><a href="/jsp/tea/subject.jsp"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;课程信息</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/allCourses.jsp"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;查看成绩</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/user.jsp"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;个人中心</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/subject.jsp"><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;课程信息</a></dd>
             </dl>
         </li>
     </ul>
@@ -49,8 +50,8 @@
 <div style="float: left; margin-right: 20px">
     <div style="width: 198px;height: 180px;border: 1px solid #eeeeee;" >
 
-        <div style="width: 200px;height: 110px" align="center" ><img src="/img/user.jpg"></div>
-        <a href="/jsp/tea/user.jsp"><div align="center"><%=request.getSession().getAttribute("teaName")%></div></a>
+        <div style="width: 200px;height: 110px" align="center" ><img src="${pageContext.request.contextPath}/img/user.jpg"></div>
+        <a href="${pageContext.request.contextPath}/jsp/tea/user.jsp"><div align="center"><%=request.getSession().getAttribute("teaName")%></div></a>
         <div align="center"><%=request.getSession().getAttribute("teaType")%></div>
     </div>
 
@@ -59,9 +60,9 @@
         <li class="layui-nav-item layui-nav-itemed">
             <a href="javascript:; " style="background-color: #aaaaaa;"><i class="fa fa-clipboard" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;教学管理</a>
             <dl class="layui-nav-child"  style="background-color: #aaaaaa;">
-                <dd><a href="/jsp/tea/index.jsp" style="color: #0C0C0C"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;首页</a></dd>
-                <dd><a href="/jsp/tea/examination_Statistics.jsp" style="color: #0C0C0C"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;发布公告</a></dd>
-                <dd><a href="/jsp/tea/score_registration.jsp" style="color: #0C0C0C"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;成绩登记</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/index.jsp" style="color: #0C0C0C"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;首页</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/examination_Statistics.jsp" style="color: #0C0C0C"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;发布公告</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/tea/score_registration.jsp" style="color: #0C0C0C"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;成绩登记</a></dd>
             </dl>
         </li>
 
@@ -83,9 +84,47 @@
     <div style="margin: 0px">
         <p style="font-size: 30px; color: #23262E"><i class="fa fa-commenting" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;留言板</p>
     </div>
-    <div style="width: 360px; height: 250px;background-color: #01AAED"></div>
-    <div style="width: 360px; height: 250px;background-color: springgreen"></div>
+    <div style="float: left">
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="100">
+                    <col width="300">
+                </colgroup>
+                <thead id="msg">
+                <tr>
+
+                    <th>学生姓名</th>
+                    <th>留言内容</th>
+                </tr>
+                </thead>
+                <tbody id="showRelationship">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/TeaServlet?method=appointShowLeave_word",
+            function (data,status) {
+                $("#showRelationship").html();
+                for(var i in data) {
+                    $("#showRelationship").append(
+                        "<tr>"+
+                        "                    <td>"+data[i]['stu_name']+"</td>"+
+                        "                    <td>"+data[i]['stu_msg']+"</td>"+
+                        "                </tr>"+
+                        ""
+                    )
+                }
+            },
+            "json")
+    })
+</script>
 <script>
     layui.use('element', function () {
         var element = layui.element(); //导航的hover效果、二级菜单等功能，需要依赖element模块

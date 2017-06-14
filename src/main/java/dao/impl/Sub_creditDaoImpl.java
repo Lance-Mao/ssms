@@ -22,7 +22,7 @@ public class Sub_creditDaoImpl implements Sub_creditDao {
         }
     }
 
-    public List<Map<String, Object>> listInfo(int number) {
+    public List<Map<String, Object>> listInfo(String number) {
         String sql = "select * from sub_credit where stu_number = ?";
         try {
             return DBConn.getQueryRunner().query(sql, new MapListHandler(), number);

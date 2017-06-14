@@ -17,7 +17,7 @@ public class Sub_creditServiceImpl implements Sub_creditService {
         sub_creditDao.save(sub_credit);
     }
 
-    public List<Map<String, Object>> listInfo(int number) {
+    public List<Map<String, Object>> listInfo(String number) {
         return sub_creditDao.listInfo(number);
     }
 }

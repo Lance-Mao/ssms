@@ -47,6 +47,7 @@ public class StuServlet extends HttpServlet {
         } else if (method.equals("showCourses")) {
             showCourses(req, resp);
         } else if (method.equals("showSubject")) {
+            System.out.println("showSubject");
             showSubject(req, resp);
         } else if (method.equals("leave_word")) {
             leave_word(req, resp);
@@ -55,9 +56,6 @@ public class StuServlet extends HttpServlet {
         }
 
 
-//        JSONArray jsonArray = JSONArray.fromObject(list);
-
-//        resp.getWriter().print(jsonArray);
 
     }
 
@@ -65,7 +63,6 @@ public class StuServlet extends HttpServlet {
         List<Map<String, Object>> allLeave_word = leave_wordService.outLeave_word();
         JSONArray jsonArray = JSONArray.fromObject(allLeave_word);
         try {
-            System.out.println("123"+jsonArray);
             resp.getWriter().print(jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,10 +76,9 @@ public class StuServlet extends HttpServlet {
         String tea_name = req.getParameter("tea_name");
         String leave_word = req.getParameter("content");
         Leave_word leave_word1 = new Leave_word(stu_number, stu_name, leave_word,tea_name);
-        System.out.println(leave_word1);
         leave_wordService.saveLeave_word(leave_word1);
         try {
-            resp.sendRedirect("/jsp/stu/leave_word.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/stu/leave_word.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,10 +86,12 @@ public class StuServlet extends HttpServlet {
     }
 
     private void showSubject(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println(789);
         String name = (String) req.getSession().getAttribute("stuName");
-        Object number = req.getSession().getAttribute("stuNumber");
+        System.out.println(name);
+        String number = (String) req.getSession().getAttribute("stuNumber");
         System.out.println(number);
-        List<Map<String,Object>> listInfo = sub_creditService.listInfo((Integer) number);
+        List<Map<String, Object>> listInfo = courseService.outCourse(name);
         JSONArray jsonArray = JSONArray.fromObject(listInfo);
         System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222222");
         System.out.println(listInfo);
@@ -108,8 +106,6 @@ public class StuServlet extends HttpServlet {
         String name = (String) req.getSession().getAttribute("stuName");
         List<Map<String,Object>> listInfo = courseService.outCourse(name);
         JSONArray jsonArray = JSONArray.fromObject(listInfo);
-        System.out.println("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-        System.out.println(jsonArray);
         try {
             resp.getWriter().print(jsonArray);
         } catch (IOException e) {
@@ -120,10 +116,8 @@ public class StuServlet extends HttpServlet {
     private void showPublish_info(HttpServletRequest req, HttpServletResponse resp) {
 
         List<Map<String, Object>> listInfo = publish_infoService.outPublish_info();
-        System.out.println(listInfo);
         JSONArray jsonArray = JSONArray.fromObject(listInfo);
         try {
-            System.out.println(jsonArray);
             resp.getWriter().print(jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,15 +129,11 @@ public class StuServlet extends HttpServlet {
         String stu_name = (String) req.getSession().getAttribute("stuName");
         List<Map<String, Object>> listCourse = courseService.outCourse(stu_name);
         JSONArray jsonArray = JSONArray.fromObject(listCourse);
-        System.out.println("1111111111111111111111111111111111");
-        System.out.println(jsonArray);
         try {
-            System.out.println(listCourse);
             resp.getWriter().print(jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(123);
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -154,19 +144,28 @@ public class StuServlet extends HttpServlet {
         stu.setPassword(s_password);
         Map<String, Object> mapInfo = stuService.infoMap(number);
 
+
         if (stu == null) {
             req.setAttribute("info", "登录失败！用户名与密码不能为空！");
-            req.getRequestDispatcher("/jsp/login/login.jsp");
+            try {
+                resp.sendRedirect(req.getContextPath()+"/jsp/login/login.jsp");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             if (stuService.login(stu)) {
                 req.getSession().setAttribute("stu",stu);
                 req.getSession().setAttribute("stuName", mapInfo.get("stu_name"));
                 req.getSession().setAttribute("stuType", mapInfo.get("type"));
                 req.getSession().setAttribute("stuNumber",number);
-                resp.sendRedirect("/jsp/stu/index.jsp");
+                resp.sendRedirect(req.getContextPath()+"/jsp/stu/index.jsp");
             } else {
-                req.setAttribute("info", "登录失败！请检查用户名与密码！");
-                req.getRequestDispatcher("/jsp/login/login.jsp");
+                req.getSession().setAttribute("info", "登录失败！请检查用户名与密码！");
+                try {
+                    resp.sendRedirect(req.getContextPath()+"/jsp/login/login.jsp");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

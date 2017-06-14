@@ -102,13 +102,15 @@ public class AdminServlet extends HttpServlet {
         String tea_name = req.getParameter("tea_name");
         String c_name = req.getParameter("c_name");
         String credit = req.getParameter("credit");
+        System.out.println("显示学分");
+        System.out.println(credit);
 
         Course course = new Course(c_name, tea_name, tea_number, stu_name, stu_number, credit);
         System.out.println(course);
         courseService.saveRelationship(course);
 
         try {
-            resp.sendRedirect("/jsp/admin/course_info_input.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/course_info_input.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,7 +165,7 @@ public class AdminServlet extends HttpServlet {
         System.out.println(tea);
         teaService.modify(tea);
         try {
-            resp.sendRedirect("/jsp/admin/tea_info_input.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/tea_info_input.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -210,7 +212,7 @@ public class AdminServlet extends HttpServlet {
         System.out.println(tea);
         teaService.save(tea);
         try {
-            resp.sendRedirect("/jsp/admin/tea_info_input.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/tea_info_input.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -240,7 +242,7 @@ public class AdminServlet extends HttpServlet {
         System.out.println(stu);
         stuService.modify(stu);
         try {
-            resp.sendRedirect("/jsp/admin/stu_info_input.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/stu_info_input.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -290,7 +292,7 @@ public class AdminServlet extends HttpServlet {
         System.out.println(stu);
         stuService.save(stu);
         try {
-            resp.sendRedirect("/jsp/admin/stu_info_input.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/stu_info_input.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -311,10 +313,10 @@ public class AdminServlet extends HttpServlet {
         req.getSession().setAttribute("adminName",mapInfo.get("name"));
         req.getSession().setAttribute("adminType",mapInfo.get("type"));
         if (adminSevice.login(admin)){
-            resp.sendRedirect("/jsp/admin/index.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/admin/index.jsp");
         }else {
             req.setAttribute("info","登录失败！请检查用户名与密码！");
-            resp.sendRedirect("/jsp/login/login.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/login/login.jsp");
         }
     }
 

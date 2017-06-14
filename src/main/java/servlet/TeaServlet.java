@@ -99,13 +99,9 @@ public class TeaServlet extends HttpServlet {
         course.setT_number(t_number);
         course.setS_name(s_name);
         course.setS_number(s_number);
-        System.out.println(222222);
         courseService.saveCourse(course);
-        System.out.println(course);
         course.setDate(date);
-        System.out.println(date);
 
-        System.out.println(c_name);
     }
 
 
@@ -128,11 +124,11 @@ public class TeaServlet extends HttpServlet {
             req.getSession().setAttribute("teaType",mapInfo.get("type"));
             req.getSession().setAttribute("teaNumber",mapInfo.get("tea_number"));
             req.getSession().setAttribute("tea",tea);
-            resp.sendRedirect("/jsp/tea/index.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/tea/index.jsp");
 
         }else {
             req.setAttribute("info","登录失败！请检查用户名与密码！");
-            resp.sendRedirect("/jsp/login/login.jsp");
+            resp.sendRedirect(req.getContextPath()+"/jsp/login/login.jsp");
         }
     }
 
