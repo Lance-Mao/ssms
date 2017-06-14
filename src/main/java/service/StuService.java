@@ -23,4 +23,11 @@ public interface StuService {
 
     //显示所有学生的信息
     List<Map<String, Object>> allStuInfo();
+
+    //根据该学号删除该学生信息
+    void delInfo(String number);
+
+    //根据该学号修改该学生信息
+    void modify(Stu stu);
+
 }

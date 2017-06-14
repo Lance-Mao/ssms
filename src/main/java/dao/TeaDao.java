@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface TeaDao {
     //查询所有信息
-    List<Tea> info();
+    List<Map<String,Object>> info();
 
     //登录时，匹配用户名与吗，密码是否一致
     boolean login(Tea tea);
@@ -21,4 +21,13 @@ public interface TeaDao {
 
     //录入老师相关信息
     void save(Tea tea);
+
+    //根据教师工号删除该教师信息
+    void delInfo(String number);
+
+    //根据教师工号修改该教师信息
+    void modify(Tea tea);
+
+    //根据教师姓名查找学生给教师的留言
+    List<Map<String, Object>> appointShowLeave_word(String name);
 }

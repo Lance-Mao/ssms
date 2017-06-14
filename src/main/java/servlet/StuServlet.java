@@ -1,17 +1,12 @@
 package servlet;
 
+import entity.Leave_word;
 import entity.Publish_info;
 import entity.Stu;
 import entity.Sub_credit;
 import net.sf.json.JSONArray;
-import service.CourseService;
-import service.Publish_infoService;
-import service.StuService;
-import service.Sub_creditService;
-import service.impl.CourseServiceImpl;
-import service.impl.Publish_infoServiceImpl;
-import service.impl.StuServiceImpl;
-import service.impl.Sub_creditServiceImpl;
+import service.*;
+import service.impl.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +29,8 @@ public class StuServlet extends HttpServlet {
     private Publish_info publish_info = new Publish_info();
     private Sub_credit sub_credit = new Sub_credit();
     private Sub_creditService sub_creditService = new Sub_creditServiceImpl();
+    private Leave_word leave_word = new Leave_word();
+    private Leave_wordService leave_wordService = new Leave_wordServiceImpl();
 
 
     @Override
@@ -51,12 +48,44 @@ public class StuServlet extends HttpServlet {
             showCourses(req, resp);
         } else if (method.equals("showSubject")) {
             showSubject(req, resp);
+        } else if (method.equals("leave_word")) {
+            leave_word(req, resp);
+        } else if (method.equals("showLeave_word")) {
+            showLeave_word(req, resp);
         }
 
 
 //        JSONArray jsonArray = JSONArray.fromObject(list);
 
 //        resp.getWriter().print(jsonArray);
+
+    }
+
+    private void showLeave_word(HttpServletRequest req, HttpServletResponse resp) {
+        List<Map<String, Object>> allLeave_word = leave_wordService.outLeave_word();
+        JSONArray jsonArray = JSONArray.fromObject(allLeave_word);
+        try {
+            System.out.println("123"+jsonArray);
+            resp.getWriter().print(jsonArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void leave_word(HttpServletRequest req, HttpServletResponse resp) {
+        String stu_number = (String) req.getSession().getAttribute("stuNumber");
+        String stu_name = (String) req.getSession().getAttribute("stuName");
+        String tea_name = req.getParameter("tea_name");
+        String leave_word = req.getParameter("content");
+        Leave_word leave_word1 = new Leave_word(stu_number, stu_name, leave_word,tea_name);
+        System.out.println(leave_word1);
+        leave_wordService.saveLeave_word(leave_word1);
+        try {
+            resp.sendRedirect("/jsp/stu/leave_word.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

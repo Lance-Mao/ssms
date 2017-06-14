@@ -5,6 +5,7 @@ import entity.Stu;
 import entity.Tea;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import utils.DBConn;
 
 import java.sql.Connection;
@@ -18,10 +19,10 @@ import java.util.Map;
  * Created by admin on 2017/6/7.
  */
 public class TeaDaoImpl implements TeaDao {
-    public List<Tea> info() {
+    public List<Map<String,Object>> info() {
         String sql = "select * from tea_info";
         try {
-            return DBConn.getQueryRunner().query(sql, new BeanListHandler<Tea>(Tea.class));
+            return DBConn.getQueryRunner().query(sql, new MapListHandler());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,5 +67,34 @@ public class TeaDaoImpl implements TeaDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void delInfo(String number) {
+        String sql = "delete from tea_info where tea_number = ?";
+        try {
+            DBConn.getQueryRunner().update(sql, number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modify(Tea tea) {
+        String sql = "update tea_info set tea_name=?,tea_sex=?,tea_age=?,password=?,type=?,phone=?,theClass=?,theCourse=?,entrance_date=? where tea_number = ?";
+        try {
+            DBConn.getQueryRunner().update(sql, tea.getTea_name(), tea.getTea_sex(), tea.getTea_age(), tea.getPassword(), tea.getType(), tea.getPhone(), tea.getTheClass(), tea.getTheCourse(),tea.getDate(),tea.getTea_number());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Map<String, Object>> appointShowLeave_word(String name) {
+        String sql = "select * from leave_word where tea_name = ?";
+        try {
+            return DBConn.getQueryRunner().query(sql, new MapListHandler(), name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

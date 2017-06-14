@@ -1,0 +1,1 @@
+INSERT INTO sams.leave_word (stu_number, stu_name, stu_msg, tea_name) VALUES (20150001, '张三', '123456<br>', '张三丰');

@@ -61,7 +61,7 @@ public class StuDaoImpl implements StuDao {
     }
 
     public void save(Stu stu) {
-        String sql = "insert into stu_info(stu_number,stu_name,stu_age,stu_sex,stu_class,stu_grape,stu_score,password,type,phone,entrance_date) values(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into stu_info(stu_number,stu_name,stu_age,stu_sex,stu_class,stu_grape,stu_score,password,phone,entrance_date,type) values(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             DBConn.getQueryRunner().update(sql, stu.getStu_number(), stu.getStu_name(), stu.getStu_age(), stu.getStu_sex(), stu.getStu_class(), stu.getStu_grape(), stu.getStu_score(), stu.getPassword(), stu.getPhone(), stu.getEntrance_date(), stu.getType());
         } catch (SQLException e) {
@@ -79,6 +79,24 @@ public class StuDaoImpl implements StuDao {
         }
 
         return null;
+    }
+
+    public void delInfo(String number) {
+        String sql = "delete from stu_info where stu_number = ?";
+        try {
+            DBConn.getQueryRunner().update(sql, number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modify(Stu stu) {
+        String sql = "update stu_info set stu_name = ?,stu_age=?,stu_sex=?,stu_class=?,stu_grape=?,stu_score=?,password=?,type=?,phone=?,entrance_date =? where stu_number = ?";
+        try {
+            DBConn.getQueryRunner().update(sql,stu.getStu_name(), stu.getStu_age(), stu.getStu_sex(), stu.getStu_class(), stu.getStu_grape(), stu.getStu_score(), stu.getPassword(), stu.getPhone(), stu.getEntrance_date(), stu.getType(),stu.getStu_number());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

@@ -3,6 +3,7 @@ package servlet;
 import entity.Course;
 import entity.Publish_info;
 import entity.Tea;
+import net.sf.json.JSONArray;
 import service.CourseService;
 import service.Publish_infoService;
 import service.TeaService;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,8 +44,23 @@ public class TeaServlet extends HttpServlet {
             course(req, resp);
         } else if (method.equals("publish_info")){
             publish_info(req, resp);
+        } else if (method.equals("appointShowLeave_word")) {
+            appointShowLeave_word(req, resp);
         }
 
+    }
+
+    private void appointShowLeave_word(HttpServletRequest req, HttpServletResponse resp) {
+        String tea_name = (String) req.getSession().getAttribute("teaName");
+        List<Map<String, Object>> appointShowLeave_word = teaService.appointShowLeave_word(tea_name);
+        JSONArray jsonArray = JSONArray.fromObject(appointShowLeave_word);
+        try {
+            resp.getWriter().print(jsonArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(tea_name);
     }
 
     private void publish_info(HttpServletRequest req, HttpServletResponse resp) {
@@ -67,12 +84,12 @@ public class TeaServlet extends HttpServlet {
     private void course(HttpServletRequest req, HttpServletResponse resp) {
 
         String c_name = req.getParameter("c_name");
-        float c_score = Integer.parseInt(req.getParameter("c_score"));
+        String c_score = req.getParameter("c_score");
         String s_name = req.getParameter("s_name");
-        int s_number = Integer.parseInt(req.getParameter("s_number"));
+        String s_number = req.getParameter("s_number");
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String t_name = req.getParameter("t_name");
-        int t_number = Integer.parseInt(req.getParameter("t_number"));
+        String t_number = req.getParameter("t_number");
 
         Course course = new Course();
         course.setC_name(c_name);

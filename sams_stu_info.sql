@@ -1,0 +1,1 @@
+INSERT INTO sams.stu_info (stu_number, stu_name, stu_age, stu_sex, stu_class, stu_grape, stu_score, password, type, phone, entrance_date) VALUES ('20150001', '张三', 20, '男', '三班', '大二', 0, '123456', '学生', '15291194274', '2017-06-13');

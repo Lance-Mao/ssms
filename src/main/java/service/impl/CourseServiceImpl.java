@@ -20,4 +20,16 @@ public class CourseServiceImpl implements CourseService {
     public List<Map<String, Object>> outCourse(String name) {
         return courseDao.outCourse(name);
     }
+
+    public void saveRelationship(Course course) {
+        courseDao.saveRelationship(course);
+    }
+
+    public List<Map<String, Object>> outRelationship() {
+        return courseDao.outRelationship();
+    }
+
+    public void delRelationship(String number) {
+        courseDao.delRelationship(number);
+    }
 }

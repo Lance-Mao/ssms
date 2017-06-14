@@ -85,8 +85,9 @@
                                                                              aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的课程表</a>
                 </dd>
                 <dd><a href="/jsp/stu/courses.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
-                                                                                   aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的成绩单</a>
-            </dd>
+                                                                             aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的成绩单</a>
+                </dd>
+
                 <dd><a href="/jsp/stu/leave_word.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
                                                                              aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;给老师留言</a>
                 </dd>
@@ -97,16 +98,63 @@
     </ul>
 </div>
 
+
+
 <div style="float: left;width: 729px;height: auto">
 
-    <div id="showCourse">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>给老师留言</legend>
+        </fieldset>
 
+        <form class="layui-form" action="${pageContext.request.contextPath}/StuServlet?method=leave_word" method="post">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">输入老师姓名</label>
+                    <div class="layui-input-inline">
+                        <input name="tea_name"  autocomplete="off" class="layui-input" type="tel">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">编辑器</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" >立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    <div style="float: left">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>留言记录</legend>
+        </fieldset>
+
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="50">
+                    <col width="700">
+                </colgroup>
+                <thead id="msg">
+                <tr>
+                    <th><input name="" lay-skin="primary" lay-filter="allChoose" type="checkbox"></th>
+
+                    <th>留言内容</th>
+                </tr>
+                </thead>
+                <tbody id="showRelationship">
+
+
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <div id="pushHomework">
-
-    </div>
-
 </div>
 <div style="float: left;width: 378px;height: auto;margin-left: 20px;border: 1px solid #C2BE9E;">
 
@@ -121,14 +169,36 @@
 
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/StuServlet?method=showLeave_word",
+            function (data,status) {
+                $("#showRelationship").html();
+                for(var i in data) {
+                    $("#showRelationship").append(
+                        "<tr>"+
+                        "                    <td><input name='' lay-skin='primary' type='checkbox'></td>"+
+                        "                    <td>"+data[i]['stu_msg']+"</td>"+
+                        "                </tr>"+
+                        ""
+                    )
+                }
+            },
+        "json")
+    })
+</script>
+
+
 <script>
     $(document).ready(function () {
         $.post("${pageContext.request.contextPath}/StuServlet?method=showPublish_info",
             function (data, status) {
                 $("#showPublish_info").html("");
-                for (var i = data.length-1; i > -1 ; i--) {
+                for (var i = data.length - 1; i > -1; i--) {
                     $("#showPublish_info").append("" +
-                        " <fieldset class='layui-elem-field layui-field-title' style='margin-top: 5px;'> "+
+                        " <fieldset class='layui-elem-field layui-field-title' style='margin-top: 5px;'> " +
                         "            <legend><i class='fa fa-commenting' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;教学通知</legend>" +
                         "        </fieldset>" +
                         "        <table class='layui-table' lay-skin='line'>" +
@@ -147,9 +217,9 @@
                         "            </thead>" +
                         "            <tbody>" +
                         "            <tr>" +
-                        "                <td>"+data[i]['tea_name']+"</td>" +
-                        "                <td>"+data[i]['tea_msg']+"</td>" +
-                        "                <td>"+data[i]['date']+"</td>" +
+                        "                <td>" + data[i]['tea_name'] + "</td>" +
+                        "                <td>" + data[i]['tea_msg'] + "</td>" +
+                        "                <td>" + data[i]['date'] + "</td>" +
                         "            </tr>" +
                         "            </tbody>" +
                         "        </table>"
@@ -161,67 +231,48 @@
     })
 </script>
 
-<script>
-    $(document).ready(function () {
-        $.post("${pageContext.request.contextPath}/StuServlet?method=showCourse",
-            function (data, status) {
-                $("#showCourse").html("");
-                for (var i = 0; i < data.length; i++) {
-                    $('#showCourse').append("<fieldset class='layui-elem-field layui-field-title' style='margin-top: 0px;'>" +
-                        "<legend><i class='fa fa-commenting' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成绩信息</legend>" +
-                        "</fieldset> <table class='layui-table' lay-skin='line'>" +
-                        "<colgroup> <col width='150'>" +
-                        "<col width='150'>" +
-                        "<col width='200'>" +
-                        "<col> </colgroup> <thead> <tr>" +
-                        "<th>课程</th>" +
-                        "<th>分数</th>" +
-                        "<th>时间</th>" +
-                        "<th>代课老师</th>" +
-                        "</tr> </thead> <tbody id='stuCourse'> " +
-                        " <tr >" +
-                        "<th>" + data[i]['c_name'] + "</th>" +
-                        "<th>" + data[i]['c_score'] + "</th>" +
-                        "<th>" + data[i]['date'] + "</th>" +
-                        "<th>" + data[i]['t_name'] + "</th>" +
-                        "</tr> </tbody> </table>");
-                }
-            },
-            "json"
-        )
-    })
-</script>
 
 <script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form()
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
 
-    $(document).ready(function () {
-        $.post("${pageContext.request.contextPath}/StuServlet?method=pushHomework",
-            function (data, status) {
-                $("#pushHomework").html("");
-                for (var i = 0; i < data.length; i++) {
-                    $('#pushHomework').append("<fieldset class='layui-elem-field layui-field-title' style='margin-top: 0px;'>" +
-                        "<legend><i class='fa fa-commenting' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;教学活动</legend>" +
-                        "</fieldset> <table class='layui-table' lay-skin='line'>" +
-                        "<colgroup> <col width='150'>" +
-                        "<col width='150'>" +
-                        "<col width='200'>" +
-                        "<col> </colgroup> <thead> <tr>" +
-                        "<th>课程</th>" +
-                        "<th>作业内容</th>" +
-                        "<th>时间</th>" +
-                        "<th>代课老师</th>" +
-                        "</tr> </thead> <tbody id='stuCourse'> " +
-                        " <tr >" +
-                        "<th>" + data[i]['c_name'] + "</th>" +
-                        "<th>" + data[i]['c_score'] + "</th>" +
-                        "<th>" + data[i]['date'] + "</th>" +
-                        "<th>" + data[i]['t_name'] + "</th>" +
-                        "</tr> </tbody> </table>");
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
                 }
-            },
-            "json"
-        )
-    })
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+
+    });
 </script>
 
 <script>

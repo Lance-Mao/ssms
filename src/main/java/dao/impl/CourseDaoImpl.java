@@ -34,4 +34,32 @@ public class CourseDaoImpl implements CourseDao {
 
         return null;
     }
+
+    public void saveRelationship(Course course) {
+        String sql = "insert into course(c_name,t_name,t_number,s_name,s_number,credit) values(?,?,?,?,?,?)";
+        try {
+            DBConn.getQueryRunner().update(sql, course.getC_name(), course.getT_name(), course.getT_number(), course.getS_name(), course.getS_number(), course.getCredit());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Map<String, Object>> outRelationship() {
+        String sql = "select * from course";
+        try {
+            return  DBConn.getQueryRunner().query(sql, new MapListHandler());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void delRelationship(String number) {
+        String sql = "delete from course where s_number = ?";
+        try {
+            DBConn.getQueryRunner().update(sql, number);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -14,9 +14,9 @@ import java.util.Map;
  */
 public class Leave_wordDaoImpl implements Leave_wordDao {
     public void saveLeave_word(Leave_word leave_word) {
-        String sql = "insert into leave_word(stu_number,stu_name,stu_msg) values(?,?,?)";
+        String sql = "insert into leave_word(stu_number,stu_name,stu_msg,tea_name) values(?,?,?,?)";
         try {
-            DBConn.getQueryRunner().update(sql, leave_word.getStu_number(), leave_word.getStu_name(), leave_word.getStu_msg());
+            DBConn.getQueryRunner().update(sql, leave_word.getStu_number(), leave_word.getStu_name(), leave_word.getStu_msg(),leave_word.getTea_name());
         } catch (SQLException e) {
             e.printStackTrace();
         }

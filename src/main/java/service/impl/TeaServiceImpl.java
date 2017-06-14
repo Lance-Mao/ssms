@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class TeaServiceImpl implements TeaService {
     private TeaDao teaDao = new TeaDaoImpl();
-    public List<Tea> info() {
+    public List<Map<String,Object>> info() {
         return teaDao.info();
     }
 
@@ -30,5 +30,17 @@ public class TeaServiceImpl implements TeaService {
 
     public void save(Tea tea) {
         teaDao.save(tea);
+    }
+
+    public void delInfo(String number) {
+        teaDao.delInfo(number);
+    }
+
+    public void modify(Tea tea) {
+        teaDao.modify(tea);
+    }
+
+    public List<Map<String, Object>> appointShowLeave_word(String name) {
+        return teaDao.appointShowLeave_word(name);
     }
 }

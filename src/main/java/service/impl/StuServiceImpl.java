@@ -32,4 +32,12 @@ public class StuServiceImpl implements StuService {
     public List<Map<String, Object>> allStuInfo() {
         return stuDao.allStuInfo();
     }
+
+    public void delInfo(String number) {
+        stuDao.delInfo(number);
+    }
+
+    public void modify(Stu stu) {
+        stuDao.modify(stu);
+    }
 }
