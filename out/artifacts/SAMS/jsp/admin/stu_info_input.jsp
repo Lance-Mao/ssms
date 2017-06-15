@@ -368,7 +368,6 @@
 
     function del_sruInfo(stu_number) {
         var stu_number = stu_number;
-        alert(stu_number);
 
         $.post("${pageContext.request.contextPath}/AdminServlet?method=del_sruInfo",
             {
@@ -381,13 +380,11 @@
 
     function alert_stuInfo(stu_number) {
         var stu_number = stu_number;
-        alert(stu_number)
         $.post("${pageContext.request.contextPath}/AdminServlet?method=findByStuNumber",
             {
                 stu_number: stu_number
             },
             function (data, status) {
-                alert(data[0]["tea_number"])
                 $("input[name='number']").val(data[0]["stu_number"])
                 $("input[name='stu_name']").val(data[0]["stu_name"])
                 $("input[name='password']").val(data[0]["password"])
@@ -414,7 +411,6 @@
     $(document).ready(function () {
         function alertInfo(stu_number) {
 
-            alert(stu_number)
             $.post("${pageContext.request.contextPath}/AdminServlet?method=alertInfo",
                 function (data, status) {
 
@@ -494,39 +490,5 @@
     });
 </script>
 
-<%--<script>
-    $(function () {
-        $("#stu_info_commit").click(function () {
-
-            var stu_number = $("input[name='number']").val();
-            var stu_name = $("input[name='stu_name']").val();
-            var stu_age = $("input[name='stu_age']").val();
-            var stu_sex = $("input[name='sex']").val();
-            var stu_class = $("input[name='stu_class_info']").val();
-            var stu_grape = $("input[name='stu_grade_info']").val();
-            var password = $("input[name='stu_password']").val();
-            var phone = $("input[name='phone']").val();
-            var entrance_date = $("input[name='date']").val()
-
-            alert(phone)
-            $.post("${pageContext.request.contextPath}/TeaServlet?method=stuInfo",
-                {
-                    stu_number: stu_number,
-                    stu_name: stu_name,
-                    stu_age: stu_age,
-                    stu_sex: stu_sex,
-                    stu_class: stu_class,
-                    stu_grape: stu_grape,
-                    password: password,
-                    phone: phone,
-                    entrance_date: entrance_date
-                },
-                function (data, status) {
-
-                }
-            );
-        })
-    })
-</script>--%>
 </body>
 </html>

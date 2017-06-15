@@ -90,6 +90,10 @@
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/leave_word.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
                                                                              aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;给老师留言</a>
                 </dd>
+
+                <dd><a href="${pageContext.request.contextPath}/jsp/stu/choose.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
+                                                                                                                  aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;选课</a>
+                </dd>
             </dl>
         </li>
 

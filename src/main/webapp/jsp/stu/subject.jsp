@@ -88,6 +88,9 @@
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/courses.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
                                                                              aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的成绩单</a>
                 </dd>
+                <dd><a href="${pageContext.request.contextPath}/jsp/stu/leave_word.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
+                                                                                                                  aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;给老师留言</a>
+                </dd>
             </dl>
         </li>
 

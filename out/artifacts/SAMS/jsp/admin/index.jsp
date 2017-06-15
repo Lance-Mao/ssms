@@ -14,9 +14,9 @@
     <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/common.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/style2.css" />
     <script>document.documentElement.className = 'js';</script>
 </head>
 
@@ -266,10 +266,10 @@
                 </div><!-- /content -->
             </div>
         </main>
-        <script src="${pageContext.request.contextPath}js/charming.min.js"></script>
-        <script src="${pageContext.request.contextPath}js/anime.min.js"></script>
-        <script src="${pageContext.request.contextPath}js/textfx.js"></script>
-        <script src="${pageContext.request.contextPath}js/main2.js"></script>
+        <script src="js/charming.min.js"></script>
+        <script src="js/anime.min.js"></script>
+        <script src="js/textfx.js"></script>
+        <script src="js/main2.js"></script>
     </div>
 </div>
 

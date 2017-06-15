@@ -26,8 +26,14 @@ public class AdminDaoImpl implements AdminDao {
             if (rs.next()) {
                 return true;
             }
+
+            //关闭链接
+            pstm.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+
         }
         return false;
     }

@@ -77,7 +77,6 @@
         </div>
     </div>
 
-
 </div>
 <div style="float: left;width: 378px;height: 570px;margin-left: 20px;border: 1px solid #C2BE9E;">
     <div style="margin: 0px">
@@ -98,8 +97,6 @@
                 </tr>
                 </thead>
                 <tbody id="showRelationship">
-
-
                 </tbody>
             </table>
         </div>
@@ -121,7 +118,8 @@
                     )
                 }
             },
-            "json")
+            "json"
+        )
     })
 </script>
 <script>

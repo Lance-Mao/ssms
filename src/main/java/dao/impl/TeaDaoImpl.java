@@ -43,6 +43,9 @@ public class TeaDaoImpl implements TeaDao {
                 System.out.println(456);
                 return true;
             }
+
+            pstm.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -235,7 +235,6 @@
     
     function delRelationship(s_number) {
         var s_number = s_number;
-        alert(s_number)
         $.post("${pageContext.request.contextPath}/AdminServlet?method=delRelationship",
             {
                 s_number:s_number

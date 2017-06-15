@@ -60,25 +60,25 @@ public class TeaServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(tea_name);
     }
 
     private void publish_info(HttpServletRequest req, HttpServletResponse resp) {
 
-        System.out.println("33333333333333333333333333333333333333333");
         String msg = req.getParameter("textarea");
         String t_name = (String) req.getSession().getAttribute("teaName");
-        System.out.println(msg);
-        Object t_number = req.getSession().getAttribute("teaNumber");
+        String t_number = (String) req.getSession().getAttribute("teaNumber");
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        System.out.println(t_number);
         publish_info.setTea_name(t_name);
-        publish_info.setTea_number((Integer) t_number);
+        publish_info.setTea_number(t_number);
         publish_info.setTea_msg(msg);
         publish_info.setDate(date);
-        System.out.println("2222222222222222222222222222222222");
         publish_infoService.savePublish_info(publish_info);
         System.out.println(msg);
+        try {
+            resp.sendRedirect(req.getContextPath()+"/jsp/tea/pushHomework.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void course(HttpServletRequest req, HttpServletResponse resp) {
@@ -115,9 +115,6 @@ public class TeaServlet extends HttpServlet {
         tea.setTea_number(number);
         tea.setPassword(s_password);
         Map<String, Object> mapInfo = teaService.infoMap(number);
-        System.out.println("111111111111111111111111111111111111111111");
-        System.out.println(number);
-        System.out.println(s_password);
 
         if (teaService.login(tea)){
             req.getSession().setAttribute("teaName",mapInfo.get("tea_name"));

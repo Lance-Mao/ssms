@@ -41,6 +41,8 @@ public class StuDaoImpl implements StuDao {
                 System.out.println("学生信息判断成功！");
                 return true;
             }
+            pstm.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

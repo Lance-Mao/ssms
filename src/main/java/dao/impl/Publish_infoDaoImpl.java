@@ -18,7 +18,6 @@ public class Publish_infoDaoImpl implements Publish_infoDao {
     public void savePublish_info(Publish_info publish_info) {
         String sql = "insert into publish_info(tea_number,tea_name,tea_msg,date) values(?,?,?,?)";
         try {
-            System.out.println(publish_info);
             DBConn.getQueryRunner().update(sql, publish_info.getTea_number(), publish_info.getTea_name(), publish_info.getTea_msg(),publish_info.getDate());
         } catch (SQLException e) {
             e.printStackTrace();

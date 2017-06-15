@@ -4,34 +4,37 @@ package entity;
  * Created by admin on 2017/6/10.
  */
 public class Publish_info {
-    private int tea_number;
+    private String tea_number;
     private String tea_name;
     private String tea_msg;
     private String date;
 
+    public Publish_info() {
+
+    }
+
     @Override
     public String toString() {
         return "Publish_info{" +
-                "tea_number=" + tea_number +
+                "tea_number='" + tea_number + '\'' +
                 ", tea_name='" + tea_name + '\'' +
                 ", tea_msg='" + tea_msg + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }
 
-    public Publish_info(){}
-    public Publish_info(int tea_number, String tea_name, String tea_msg, String date) {
+    public Publish_info(String tea_number, String tea_name, String tea_msg, String date) {
         this.tea_number = tea_number;
         this.tea_name = tea_name;
         this.tea_msg = tea_msg;
         this.date = date;
     }
 
-    public int getTea_number() {
+    public String getTea_number() {
         return tea_number;
     }
 
-    public void setTea_number(int tea_number) {
+    public void setTea_number(String tea_number) {
         this.tea_number = tea_number;
     }
 

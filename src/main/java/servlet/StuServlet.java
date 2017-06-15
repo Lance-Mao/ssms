@@ -4,7 +4,9 @@ import entity.Leave_word;
 import entity.Publish_info;
 import entity.Stu;
 import entity.Sub_credit;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
+import org.junit.Test;
 import service.*;
 import service.impl.*;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,10 +56,38 @@ public class StuServlet extends HttpServlet {
             leave_word(req, resp);
         } else if (method.equals("showLeave_word")) {
             showLeave_word(req, resp);
+        } else if (method.equals("choose")) {
+            choose(req, resp);
         }
 
 
 
+    }
+
+    @Test
+    public void test() {
+        List<Map<String, Object>> chooseCourse = courseService.outRelationship();
+        List<Map<String, Object>> oneChooseCourses = new ArrayList<Map<String, Object>>();
+        System.out.println(chooseCourse.get(0).get("c_name"));
+        System.out.println(chooseCourse.get(0));
+    }
+
+    private void choose(HttpServletRequest req, HttpServletResponse resp) {
+        List<Map<String, Object>> chooseCourse = courseService.outRelationship();
+        List<Map<String, Object>> oneChooseCourses = new ArrayList<Map<String, Object>>();
+        for (int i = 0; i<chooseCourse.size();i++) {
+            if (chooseCourse.get(i).get("s_name") == req.getSession().getAttribute("stuName")) {
+                oneChooseCourses.add((Map<String, Object>) chooseCourse.get(i));
+            }
+        }
+
+        req.getSession().setAttribute("oneChooseCourses", oneChooseCourses);
+        JSONArray jsonArray = JSONArray.fromObject(oneChooseCourses);
+        try {
+            resp.getWriter().print(jsonArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showLeave_word(HttpServletRequest req, HttpServletResponse resp) {

@@ -9,7 +9,7 @@
 <%@page isELIgnored="false" %>
 <html>
 <head>
-    <title>查看成绩</title>
+    <title>TronClass</title>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-3.2.1/jquery-3.2.1.js"></script>
     <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css" media="all">
@@ -95,17 +95,25 @@
     <div style="float: left; margin-bottom: 10px; border: 1px solid #C2BE9E; width: 725px;height: 35px;"><p
             style="font-size: 15px;"><i class="fa fa-bell" aria-hidden="true"></i>发布通知</p></div>
 
-    <div class="layui-form-item layui-form-text">
-        <div class="layui-input-block">
-            <textarea class="layui-textarea layui-hide" name="p_content" lay-verify="content"
-                      id="LAY_demo_editor"></textarea>
+    <form class="layui-form" action="${pageContext.request.contextPath}/TeaServlet?method=publish_info" method="post">
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">编辑器</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea layui-hide" name="textarea" lay-verify="content" id="LAY_demo_editor"></textarea>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1" id="gonggao">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" >立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
+    </form>
+
+
+    <div style="float: left;width: auto" id="showPublish_info">
+
     </div>
 </div>
 
@@ -136,7 +144,11 @@
             </table>
         </div>
     </div>
+
+
 </div>
+
+
 <script>
     $(document).ready(function () {
         $.post("${pageContext.request.contextPath}/TeaServlet?method=appointShowLeave_word",
@@ -156,19 +168,39 @@
     })
 </script>
 <script>
-    $(function () {
-
-        $("#gonggao").click(function () {
-            var content = $("textarea[name='p_content']").val();
-            alert($("#LAY_demo_editor").val());
-            $.post("${pageContext.request.contextPath}/TeaServlet?method=publish_info", {
-                    textarea: content
-                },
-                function (data, status) {
-
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/StuServlet?method=showPublish_info",
+            function (data, status) {
+                $("#showPublish_info").html("");
+                for (var i = data.length - 1; i > -1; i--) {
+                    $("#showPublish_info").append("" +
+                        " <fieldset class='layui-elem-field layui-field-title' style='margin-top: 5px;'> " +
+                        "            <legend><i class='fa fa-commenting' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;我发布过的通知</legend>" +
+                        "        </fieldset>" +
+                        "        <table class='layui-table' lay-skin='line'>" +
+                        "            <colgroup>" +
+                        "                <col width='480'>" +
+                        "                <col width='200'>" +
+                        "                <col>" +
+                        "            </colgroup>" +
+                        "            <thead>" +
+                        "            <tr>" +
+                        "                <th>留言内容</th>" +
+                        "                <th>发布时间</th>" +
+                        "            </tr>" +
+                        "            </thead>" +
+                        "            <tbody>" +
+                        "            <tr>" +
+                        "                <td>" + data[i]['tea_msg'] + "</td>" +
+                        "                <td>" + data[i]['date'] + "</td>" +
+                        "            </tr>" +
+                        "            </tbody>" +
+                        "        </table>"
+                    );
                 }
-            )
-        })
+            },
+            "json"
+        );
     })
 </script>
 <script>

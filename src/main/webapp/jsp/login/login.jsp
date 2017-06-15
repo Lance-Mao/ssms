@@ -15,12 +15,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-3.2.1/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-3.2.1/jquery-3.2.1.min.js"></script>
 
-    <%--<script type="text/javascript" src="js/jQuery1.7.js"></script>--%>
-    <%--<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>--%>
-    <%--<script type="text/javascript" src="js/jquery1.42.min.js"></script>--%>
-    <%--<script type="text/javascript" src="js/jquery.SuperSlide.js"></script>--%>
-    <%--<script type="text/javascript" src="js/Validform_v5.3.2_min.js"></script>--%>
-
 </head>
 <body>
 <script type="text/javascript">
@@ -69,7 +63,7 @@
                 <span style="color: red"><%=
                 request.getSession().getAttribute("info")
 
-                %><% request.getSession().setMaxInactiveInterval(5*60*60);%></span>
+                %></span>
                 <div id="s_login">
                     <button id="s_submit" type="submit" class="denglu">登录</button>
                 </div>

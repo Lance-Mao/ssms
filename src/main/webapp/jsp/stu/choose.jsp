@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: admin
   Date: 2017/6/5
@@ -50,7 +51,7 @@
         </li>
         <li class="layui-nav-item">
             <a href="${pageContext.request.contextPath}/jsp/stu/index.jsp"><i class="fa fa-user-circle-o"
-                                            aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的主页</a>
+                                                                              aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的主页</a>
             <dl class="layui-nav-child">
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/courses.jsp"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;查看成绩</a>
                 </dd>
@@ -79,16 +80,16 @@
                                                                           aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的学习</a>
             <dl class="layui-nav-child" style="background-color: #aaaaaa;">
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/index.jsp" style="color: #0C0C0C"><i class="fa fa-university"
-                                                                           aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;首页</a>
+                                                                                                             aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;首页</a>
                 </dd>
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/subject.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
-                                                                             aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的课程表</a>
+                                                                                                               aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的课程表</a>
                 </dd>
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/courses.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
-                                                                                   aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的成绩单</a>
-            </dd>
+                                                                                                               aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;我的成绩单</a>
+                </dd>
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/leave_word.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
-                                                                             aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;给老师留言</a>
+                                                                                                                  aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;给老师留言</a>
                 </dd>
 
                 <dd><a href="${pageContext.request.contextPath}/jsp/stu/choose.jsp" style="color: #0C0C0C"><i class="fa fa-file-text"
@@ -103,7 +104,92 @@
 
 <div style="float: left;width: 729px;height: auto">
 
-    <div id="showCourse">
+    <div id="choose">
+        <fieldset class='layui-elem-field layui-field-title' style='margin-top: 20px;'>
+            <legend>选课界面</legend>
+        </fieldset>
+
+        <form class='layui-form' action='${pageContext.request.contextPath}/StuServlet?method=choose' method='post'>
+
+
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>课程</label>
+                <div class='layui-input-block'>
+                    <select name='interest' lay-filter='aihao' id="kecheng">
+                        <option value=''></option>
+                        <option value='0'>写作</option>
+                        <option value='1' selected=''>阅读</option>
+                        <option value='2'>游戏</option>
+                        <option value='3'>音乐</option>
+                        <option value='4'>旅行</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class='layui-form-item'>
+                <label class='layui-form-label'>老师</label>
+                <div class='layui-input-block'>
+                    <select name='interest' lay-filter='aihao'>
+                        <option value=''></option>
+                        <option value='0'>写作</option>
+                        <option value='1' selected=''>阅读</option>
+                        <option value='2'>游戏</option>
+                        <option value='3'>音乐</option>
+                        <option value='4'>旅行</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class='layui-form-item'>
+                <div class='layui-input-block'>
+                    <button class='layui-btn' lay-submit=''>立即提交</button>
+                    <button type='reset' class='layui-btn layui-btn-primary'>重置</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            layui.use(['form', 'layedit', 'laydate'], function(){
+                var form = layui.form()
+                    ,layer = layui.layer
+                    ,layedit = layui.layedit
+                    ,laydate = layui.laydate;
+
+                //创建一个编辑器
+                var editIndex = layedit.build('LAY_demo_editor');
+
+                //自定义验证规则
+                form.verify({
+                    title: function(value){
+                        if(value.length < 5){
+                            return '标题至少得5个字符啊';
+                        }
+                    }
+                    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+                    ,content: function(value){
+                        layedit.sync(editIndex);
+                    }
+                });
+
+                //监听指定开关
+                form.on('switch(switchTest)', function(data){
+                    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                        offset: '6px'
+                    });
+                    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+                });
+
+                //监听提交
+                form.on('submit(demo1)', function(data){
+                    layer.alert(JSON.stringify(data.field), {
+                        title: '最终的提交信息'
+                    })
+                    return false;
+                });
+
+
+            });
+        </script>
 
     </div>
 
@@ -125,6 +211,95 @@
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/StuServlet?method=showSubject",
+        function (data,status) {
+            $("#choose").html("");
+            for(var i in data) {
+                $("#choose").append(
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""+
+                    ""
+                )
+            }
+        })
+    })
+</script>
 <script>
     $(document).ready(function () {
         $.post("${pageContext.request.contextPath}/StuServlet?method=showPublish_info",

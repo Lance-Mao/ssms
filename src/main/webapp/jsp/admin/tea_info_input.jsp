@@ -380,7 +380,6 @@
                 tea_number: tea_number
             },
             function (data, status) {
-                alert(data[0]["tea_number"])
                 $("input[name='number']").val(data[0]["tea_number"])
                 $("input[name='tea_name']").val(data[0]["tea_name"])
                 $("input[name='password']").val(data[0]["password"])
@@ -405,7 +404,6 @@
 
     function del_teaInfo(tea_number) {
         var tea_number = tea_number;
-        alert(tea_number);
         $.post("${pageContext.request.contextPath}/AdminServlet?method=del_teaInfo",
             {
                 tea_number:tea_number
