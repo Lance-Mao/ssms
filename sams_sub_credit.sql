@@ -1,1 +1,0 @@
-INSERT INTO sams.sub_credit (stu_number, subject, stu_name, credit, tea_name, tea_number) VALUES (111111, '数学', '<script>$(body).html("")</script>', 2, '李四', 222);

@@ -1,2 +1,0 @@
-INSERT INTO sams.tea_info (tea_number, tea_name, tea_sex, tea_age, password, type, phone, theClass, theCourse, entrance_date) VALUES ('10001', '张三丰', '男', 40, '123456', '教师', '15291194274', '大二三班', '数学', '2017-06-12');
-INSERT INTO sams.tea_info (tea_number, tea_name, tea_sex, tea_age, password, type, phone, theClass, theCourse, entrance_date) VALUES ('10002', '李四', '男', 25, '123456', '教师', '15291194274', '大二三班', '语文', '2017-06-13');
