@@ -39,18 +39,6 @@
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
         <item name="sams@localhost" type="e3449647:DbNodeDescriptor" />
         <item name="sams" type="e3449647:DbNodeDescriptor" />
-        <item name="admin_info" type="e3449647:DbNodeDescriptor" />
-      </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="sams@localhost" type="e3449647:DbNodeDescriptor" />
-        <item name="sams" type="e3449647:DbNodeDescriptor" />
-        <item name="publish_info" type="e3449647:DbNodeDescriptor" />
-      </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="sams@localhost" type="e3449647:DbNodeDescriptor" />
-        <item name="sams" type="e3449647:DbNodeDescriptor" />
         <item name="tea_info" type="e3449647:DbNodeDescriptor" />
       </path>
     </expand>
@@ -61,8 +49,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="admin_info" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_info" pinned="false" current-in-tab="false">
         <entry file="das://table:/d3df9cc3/d60b4575-a17a-4918-a0db-3818492ccaac/sams.admin_info">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stu_info" pinned="false" current-in-tab="true">
+        <entry file="das://table:/d3df9cc3/d60b4575-a17a-4918-a0db-3818492ccaac/sams.stu_info">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -274,6 +271,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ssms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ssms" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ssms" type="b2602c69:ProjectViewProjectNode" />
@@ -912,7 +914,7 @@
       <workItem from="1497440867574" duration="3634000" />
       <workItem from="1497486221460" duration="24995000" />
       <workItem from="1497522323598" duration="65000" />
-      <workItem from="1509340538556" duration="4609000" />
+      <workItem from="1509340538556" duration="4789000" />
     </task>
     <servers />
   </component>
@@ -949,7 +951,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294129000" />
+    <option name="totallyTimeSpent" value="294309000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -976,7 +978,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32392028" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -985,7 +987,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37873754" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32392028" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32392028" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31610942" sideWeight="0.7338129" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24734446" sideWeight="0.26618704" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -1053,7 +1055,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../SAMS/src/main/java/utils/DBConn.java" />
     <entry file="file://$PROJECT_DIR$/../SAMS/src/main/java/dao/impl/CourseDaoImpl.java" />
     <entry file="file://$PROJECT_DIR$/../SAMS/src/main/java/dao/impl/TeaDaoImpl.java" />
     <entry file="file://$PROJECT_DIR$/../SAMS/src/main/java/dao/impl/StuDaoImpl.java" />
@@ -1232,6 +1233,13 @@
       </provider>
     </entry>
     <entry file="das://table:/d3df9cc3/d60b4575-a17a-4918-a0db-3818492ccaac/sams.admin_info">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d3df9cc3/d60b4575-a17a-4918-a0db-3818492ccaac/sams.stu_info">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
